@@ -1,0 +1,22 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      PORT: "8000"
+      CORS_ORIGINS: http://localhost:3000
+      PROCESSED_DIR: /app/data/processed
+    volumes:
+      - ./backend/data/processed:/app/data/processed:ro
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
