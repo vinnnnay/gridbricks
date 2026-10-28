@@ -1,21 +1,52 @@
 :root {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #172a3a;
-  background: #f3f6f8;
+  color: var(--ink);
+  background: var(--page);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   font-weight: 400;
+  color-scheme: dark;
+  --page: #0b1118;
+  --ink: #e5edf5;
+  --muted: #a0afbd;
+  --line: #2a3948;
+  --teal: #4db2c4;
+  --orange: #e3a34f;
+  --white: #111b26;
+  --surface-alt: #172431;
+  --surface-soft: #131f2a;
+  --text-secondary: #b7c5d1;
+  --text-strong: #dce8f1;
+  --accent-soft: #16333c;
+  --teal-strong: #8dd9e4;
+  --chart-grid: #2b3a48;
+  --chart-tooltip: #111b26;
+  --heat-empty: #202d39;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --page: #f3f6f8;
   --ink: #172a3a;
   --muted: #617080;
   --line: #dce4e9;
   --teal: #167d91;
   --orange: #c07119;
   --white: #fff;
+  --surface-alt: #f9fbfc;
+  --surface-soft: #f5f8fa;
+  --text-secondary: #526575;
+  --text-strong: #172a3a;
+  --accent-soft: #dceff2;
+  --teal-strong: #126879;
+  --chart-grid: #e8edf2;
+  --chart-tooltip: #fff;
+  --heat-empty: #edf1f4;
 }
 
 * { box-sizing: border-box; }
 
-body { margin: 0; min-width: 320px; }
+body { margin: 0; min-width: 320px; background: var(--page); color: var(--ink); }
 
 button, input { font: inherit; }
 
@@ -37,14 +68,21 @@ button:focus-visible, input:focus-visible {
   margin-bottom: 26px;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
 .brand-mark {
   display: grid;
   flex: 0 0 52px;
   height: 52px;
   place-items: center;
   border-radius: 15px;
-  background: #dceff2;
-  color: #126879;
+  background: var(--accent-soft);
+  color: var(--teal-strong);
   font-size: 24px;
   font-weight: 800;
 }
@@ -70,15 +108,28 @@ h2 { margin-bottom: 6px; font-size: 18px; letter-spacing: -.02em; }
 }
 
 .coverage-pill {
-  margin-left: auto;
   padding: 8px 12px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: #fff;
-  color: #42586a;
+  background: var(--white);
+  color: var(--text-secondary);
   font-size: 12px;
   white-space: nowrap;
 }
+
+.theme-toggle {
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.theme-toggle:hover { border-color: var(--teal); color: var(--teal); }
 
 .panel {
   border: 1px solid var(--line);
@@ -240,6 +291,99 @@ td { color: #293d4d; }
 .empty-dashboard p { margin-bottom: 0; }
 .page-footer { padding: 20px 4px 0; color: #788692; font-size: 11px; text-align: center; }
 
+:root[data-theme="dark"] .coverage-pill,
+:root[data-theme="dark"] .control-field input,
+:root[data-theme="dark"] .calculator-controls input,
+:root[data-theme="dark"] .calculator-controls select,
+:root[data-theme="dark"] .heatmap-corner,
+:root[data-theme="dark"] .heatmap-date {
+  background: var(--white);
+  color: var(--ink);
+}
+
+:root[data-theme="dark"] .control-field label,
+:root[data-theme="dark"] .calculator-controls label,
+:root[data-theme="dark"] .metric-label,
+:root[data-theme="dark"] .metric-unit,
+:root[data-theme="dark"] th,
+:root[data-theme="dark"] td,
+:root[data-theme="dark"] .guidance p,
+:root[data-theme="dark"] .coverage-note,
+:root[data-theme="dark"] .buffer-results span,
+:root[data-theme="dark"] .buffer-results strong,
+:root[data-theme="dark"] .comparison-stats dd,
+:root[data-theme="dark"] .heatmap-date,
+:root[data-theme="dark"] .ramp-summary strong {
+  color: var(--text-secondary);
+}
+
+:root[data-theme="dark"] .metric-value,
+:root[data-theme="dark"] .buffer-results strong,
+:root[data-theme="dark"] .comparison-stats dd,
+:root[data-theme="dark"] .ramp-summary strong,
+:root[data-theme="dark"] .value-hero {
+  color: var(--ink);
+}
+
+:root[data-theme="dark"] .metric-hint,
+:root[data-theme="dark"] .method-note,
+:root[data-theme="dark"] .buffer-results small,
+:root[data-theme="dark"] .comparison-stats dt,
+:root[data-theme="dark"] .ramp-summary span,
+:root[data-theme="dark"] .page-footer {
+  color: var(--muted);
+}
+
+:root[data-theme="dark"] .control-field input,
+:root[data-theme="dark"] .calculator-controls input,
+:root[data-theme="dark"] .calculator-controls select {
+  border-color: var(--line);
+}
+
+:root[data-theme="dark"] .buffer-results > div,
+:root[data-theme="dark"] .ramp-summary > div {
+  border-color: var(--line);
+  background: var(--surface-soft);
+}
+:root[data-theme="dark"] .buffer-results .risk-result {
+  border-color: #315965;
+  background: var(--accent-soft);
+}
+
+:root[data-theme="dark"] th,
+:root[data-theme="dark"] td,
+:root[data-theme="dark"] .latest-note,
+:root[data-theme="dark"] .comparison-stats div {
+  border-color: var(--line);
+}
+
+:root[data-theme="dark"] .recharts-cartesian-grid line {
+  stroke: var(--chart-grid);
+}
+:root[data-theme="dark"] .recharts-cartesian-axis-tick-value,
+:root[data-theme="dark"] .recharts-legend-item-text {
+  fill: var(--muted);
+  color: var(--muted);
+}
+:root[data-theme="dark"] .recharts-default-tooltip {
+  border-color: var(--line) !important;
+  background-color: var(--chart-tooltip) !important;
+  color: var(--ink) !important;
+}
+:root[data-theme="dark"] .recharts-tooltip-label,
+:root[data-theme="dark"] .recharts-tooltip-item {
+  color: var(--ink) !important;
+}
+:root[data-theme="dark"] .guidance strong {
+  color: var(--teal);
+}
+:root[data-theme="dark"] .error-banner,
+:root[data-theme="dark"] .inline-warning {
+  border-color: #70443e;
+  background: #2a1c1b;
+  color: #f0b0a5;
+}
+
 @media (max-width: 1100px) {
   .metrics-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
@@ -248,7 +392,7 @@ td { color: #293d4d; }
   .page-shell { padding-top: 22px; }
   .page-header { align-items: flex-start; gap: 12px; flex-wrap: wrap; }
   .brand-mark { flex-basis: 42px; height: 42px; border-radius: 12px; }
-  .coverage-pill { margin-left: 54px; }
+  .header-actions { flex-basis: 100%; justify-content: flex-start; margin-left: 54px; flex-wrap: wrap; }
   .controls { align-items: stretch; }
   .control-field { flex: 1 1 42%; min-width: 130px; }
   .control-field input { width: 100%; min-width: 0; }

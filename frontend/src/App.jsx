@@ -25,6 +25,9 @@ const INITIAL_FILTERS = {
 };
 
 export default function App() {
+  const [theme, setTheme] = useState(
+    () => (localStorage.getItem("wind-dashboard-theme") === "light" ? "light" : "dark"),
+  );
   const [filters, setFilters] = useState(INITIAL_FILTERS);
   const [appliedFilters, setAppliedFilters] = useState(INITIAL_FILTERS);
   const [config, setConfig] = useState(null);
@@ -32,6 +35,11 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [latestError, setLatestError] = useState("");
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem("wind-dashboard-theme", theme);
+  }, [theme]);
 
   useEffect(() => {
     getConfig()
@@ -102,7 +110,17 @@ export default function App() {
             Historical accuracy for forecasts available at the trading decision cutoff.
           </p>
         </div>
-        <span className="coverage-pill">Coverage: {rangeLabel}</span>
+        <div className="header-actions">
+          <span className="coverage-pill">Coverage: {rangeLabel}</span>
+          <button
+            className="theme-toggle"
+            type="button"
+            onClick={() => setTheme((current) => (current === "dark" ? "light" : "dark"))}
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+          >
+            {theme === "dark" ? "☀ Light mode" : "☾ Dark mode"}
+          </button>
+        </div>
       </header>
 
       <ControlsBar

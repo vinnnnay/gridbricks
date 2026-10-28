@@ -160,10 +160,12 @@ The app is verified for local Docker use. It is **not yet publicly deployed**. A
 
 ### Vercel FastAPI entrypoint
 
-The repository root contains a `pyproject.toml` that points Vercel to the FastAPI
-application at `backend.app.main:app`. In Vercel, set the project **Root
-Directory** to the repository root (not `backend/`) so Vercel can read this
-configuration, the root `requirements.txt`, and the `backend/` package. Ensure
+The repository root contains a `pyproject.toml` that declares the API's Python
+dependencies and points Vercel to the FastAPI application at
+`backend.app.main:app`. The `.python-version` file selects Python 3.11. In
+Vercel, set the project **Root Directory** to the repository root (not
+`backend/`) so Vercel can read this
+configuration and the `backend/` package. Ensure
 `backend/data/processed/wind_actuals.csv` and
 `backend/data/processed/wind_forecasts.csv` are committed and included in the
 deployment. Configure `CORS_ORIGINS` for the deployed frontend origin when it

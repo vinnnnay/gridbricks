@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 
 function heatColor(value, max) {
-  if (value == null || !Number.isFinite(Number(value))) return "#edf1f4";
+  if (value == null || !Number.isFinite(Number(value))) return "var(--heat-empty)";
   const ratio = max > 0 ? Math.min(Number(value) / max, 1) : 0;
   const lightness = 95 - ratio * 46;
   return `hsl(190 48% ${lightness}%)`;
