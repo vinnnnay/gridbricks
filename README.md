@@ -162,7 +162,8 @@ The app is verified for local Docker use. It is **not yet publicly deployed**. A
 
 The repository root contains a `pyproject.toml` that declares the API's Python
 dependencies and points Vercel to the FastAPI application at
-`backend.app.main:app`. The `.python-version` file selects Python 3.11. In
+`backend.app.main:app`. The `.python-version` file selects Python 3.12 for
+Vercel's build environment (the Docker image continues to use Python 3.11). In
 Vercel, set the project **Root Directory** to the repository root (not
 `backend/`) so Vercel can read this
 configuration and the `backend/` package. Ensure
